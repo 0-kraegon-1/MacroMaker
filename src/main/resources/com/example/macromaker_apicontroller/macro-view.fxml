@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.macromaker_apicontroller.MacroMaker_APIController">
+    <top>
+        <MenuBar prefHeight="41.0" prefWidth="550.0" BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false">
+                    <graphic>
+                        <MenuButton mnemonicParsing="false" text="Files">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#loadPressed" text="Load" />
+                                <MenuItem mnemonicParsing="false" onAction="#savePressed" text="Save" />
+                                <MenuItem mnemonicParsing="false" onAction="#deletePressed" text="Delete" />
+                            </items>
+                            <padding>
+                                <Insets left="5.0" />
+                            </padding>
+                        </MenuButton>
+                    </graphic>
+                </Menu>
+            <Menu mnemonicParsing="false">
+               <graphic>
+                  <MenuButton mnemonicParsing="false" text="Settings">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="   Keystroke Delay (ms)">
+                           <graphic>
+                              <Slider fx:id="keystrokeSlider" blockIncrement="1.0" min="1.0" minorTickCount="0" onMouseReleased="#keystrokeSliderDragDropped" onScroll="#keystrokeSliderScroll" showTickLabels="true" showTickMarks="true" value="25.0" />
+                           </graphic>
+                        </MenuItem>
+                      <MenuItem mnemonicParsing="false" text="   Initial Wait Time (sec)">
+                           <graphic>
+                              <Slider fx:id="waitTimeSlider" blockIncrement="1.0" majorTickUnit="5.0" max="30.0" min="1.0" minorTickCount="0" onMouseReleased="#waitTimeSliderDragDropped" onScroll="#waitTimeSliderScroll" showTickLabels="true" showTickMarks="true" value="5.0" />
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" text="   Macro Loop Count">
+                           <graphic>
+                              <TextField fx:id="loopCountBox" alignment="CENTER" maxWidth="100.0" onKeyReleased="#loopCountAltered" text="1" translateX="20.0">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </TextField>
+                           </graphic>
+                        </MenuItem>
+                    </items>
+                  </MenuButton>
+               </graphic>
+            </Menu>
+            <Menu mnemonicParsing="false">
+               <graphic>
+                  <MenuButton mnemonicParsing="false" text="Help">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#displaySaveFileLocation" text="Display Save File Location" />
+                    </items>
+                  </MenuButton>
+               </graphic>
+            </Menu>
+            </menus>
+            <BorderPane.margin>
+                <Insets />
+            </BorderPane.margin>
+            <padding>
+                <Insets left="10.0" top="7.0" />
+            </padding>
+        </MenuBar>
+    </top>
+    <bottom>
+        <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <buttons>
+            <Button mnemonicParsing="false" onAction="#killMacro" text="Kill Macro" />
+                <Button mnemonicParsing="false" onAction="#executePressed" text="Execute" />
+            </buttons>
+            <BorderPane.margin>
+                <Insets right="20.0" />
+            </BorderPane.margin>
+        </ButtonBar>
+    </bottom>
+    <center>
+        <TextArea fx:id="macroTextBox" prefHeight="300.0" prefWidth="550.0" promptText="Write your macros here to execute them.  You can also save and load macros" BorderPane.alignment="CENTER" />
+    </center>
+</BorderPane>
