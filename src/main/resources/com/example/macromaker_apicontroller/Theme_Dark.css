@@ -1,0 +1,234 @@
+#minimizeButton, #maximizeButton, #closeButton {
+    -fx-min-width: 50;
+    -fx-max-width: 50;
+    -fx-min-height: 30;
+    -fx-max-height: 30;
+    -fx-effect: null;
+    -fx-background-radius: null;
+    -fx-background-insets: null;
+    -fx-background-color: #333333;
+    -fx-text-fill: #E3E3E3;
+    -fx-font-weight: null;
+    -fx-font-size: null;
+} #minimizeButton:hover, #maximizeButton:hover {
+    -fx-background-color: #595959;
+    -fx-text-fill: white;
+} #minimizeButton:pressed, #maximizeButton:pressed {
+    -fx-background-color: #474747;
+} #closeButton:hover {
+     -fx-background-color: #C42020;
+     -fx-text-fill: white;
+} #closeButton:pressed {
+    -fx-background-color: #900000;
+}
+
+.root {
+    primary-color:       #333333;
+    secondary-color:     #242424;
+    shaded-color:        #121212;
+    text-color:          #E3E3E3;
+
+    menu-pressed:        #474747;
+    menu-showing:        #424242;
+    menu-item-hover:     #363636;
+    menu-item-pressed:   #1A1A1A;
+    menu-border:         menu-item-pressed;
+
+    button-color-1:      primary-color;
+    button-color-2:      #474747;
+    button-color-3:      #595959;
+    button-color-4:      #8F8C8C;
+
+    button-hover-1:      #454545;
+    button-hover-2:      #595959;
+    button-hover-3:      #666666;
+    button-hover-4:      #A1A1A1;
+
+    button-pressed-1:    secondary-color;
+    button-pressed-2:    primary-color;
+    button-pressed-3:    #4F4F4F;
+    button-pressed-4:    #7A7A7A;
+
+    toggle-selected:     #004A0E;
+    slider-thumb:        #E3E3E3;
+    scroll-bar-color:    #383838;
+    pane-divider-bg:     #5C5C5C;
+    text-area-hl:        #008296;
+    text-box-bg:         #454545;
+
+    list-bg-gradient-1:  primary-color;
+    list-bg-gradient-2:  #474747;
+    list-bg-gradient-3:  #595959;
+    list-bg-gradient-4:  #8F8C8C;
+    list-cell-even:      #1C1C1C;
+    list-cell-odd:       #0D0D0D;
+}
+
+.root, #titleBar {
+    -fx-background-color: primary-color;
+} #titleBar .label {
+    -fx-text-fill: text-color;
+    -fx-font-weight: bold;
+}
+
+#saveFileListView {
+    -fx-border-color: secondary-color;
+    -fx-background-insets: 0, 0, 0;
+} .list-cell {
+    -fx-text-fill: text-color;
+} .list-cell:even {
+    -fx-background-color: list-cell-even;
+} .list-cell:odd {
+    -fx-background-color: list-cell-odd;
+}
+
+.split-pane {
+    -fx-background-color: secondary-color;
+} .split-pane .label {
+    -fx-text-fill: text-color;
+} .split-pane-divider {
+    -fx-background-color: pane-divider-bg;
+}
+
+.text-area {
+    -fx-text-fill: text-color;
+    -fx-font-size: 12;
+} .text-area .content {
+    -fx-background-color: shaded-color;
+} .text-area:focused {
+    -fx-background-color: text-area-hl;
+}
+.text-field {
+    -fx-background-color: text-box-bg;
+    -fx-border-color: shaded-color;
+    -fx-border-width: 2;
+    -fx-text-fill: white;
+}
+
+.scroll-bar .track {
+    -fx-background-color: shaded-color;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+} .scroll-bar .thumb {
+    -fx-background-color: scroll-bar-color;
+} .scroll-bar .increment-button, .scroll-bar .decrement-button {
+    -fx-background-color: shaded-color;
+    -fx-background-insets: 0, 0, 0;
+}
+
+.menu-bar {
+    -fx-border-color: menu-border;
+    -fx-border-style: solid none none none;
+}
+.menu .label {
+    -fx-text-fill: text-color;
+    -fx-font-weight: bold;
+    -fx-font-size: 14;
+} .menu-bar, .menu {
+    -fx-background-color: primary-color;
+} .menu:pressed {
+     -fx-background-color: menu-pressed;
+} .menu:showing {
+     -fx-background-color: menu-showing;
+} .menu:showing .label {
+     -fx-text-fill: text-color;
+}
+
+ .context-menu, #menu-item {
+    -fx-background-color: secondary-color;
+    -fx-padding: 0;
+} .menu-item .label, .check-box, #menu-item .label {
+    -fx-font-weight: bold;
+    -fx-font-size: 12;
+} .menu-item:focused, #menu-item:focused {
+    -fx-background-color: menu-item-hover;
+    -fx-text-fill: text-color;
+} .menu-item:pressed, #menu-item:pressed {
+      -fx-background-color: menu-item-pressed;
+}
+
+#sub-menu-title:hover, #sub-menu-title:pressed, #sub-menu-title:focused {
+    -fx-background-color: secondary-color;
+} #sub-menu-title .label {
+     -fx-font-size: 14;
+}
+
+.slider .thumb:pressed {
+    -fx-background-color: slider-thumb;
+}.slider .thumb {
+    -fx-background-color: slider-thumb;
+}
+
+.button-bar {
+    -fx-background-color: primary-color;
+} .button-bar .label {
+    -fx-text-fill: text-color;
+    -fx-font-weight: bold;
+}
+.button {
+    -fx-color-one:   button-color-1;
+    -fx-color-two:   button-color-2;
+    -fx-color-three: button-color-3;
+    -fx-color-four:  button-color-4;
+    -fx-background-color:
+        linear-gradient(-fx-color-four, -fx-color-one),
+        linear-gradient(-fx-color-four 2%, -fx-color-two 20%, -fx-color-one 100%),
+        linear-gradient(-fx-color-four 2%, -fx-color-three 50%);
+    -fx-min-width: 75;
+    -fx-max-width: 75;
+    -fx-background-radius: 10;
+    -fx-background-insets: 0.5;
+    -fx-text-fill: text-color;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
+} .button:hover {
+    -fx-color-one:   button-hover-1;
+    -fx-color-two:   button-hover-2;
+    -fx-color-three: button-hover-3;
+    -fx-color-four:  button-hover-4;
+} .button:pressed {
+    -fx-color-one:   button-pressed-1;
+    -fx-color-two:   button-pressed-2;
+    -fx-color-three: button-pressed-3;
+    -fx-color-four:  button-pressed-4;
+}
+
+.toggle-button {
+    -fx-color-one:   button-color-1;
+    -fx-color-two:   button-color-2;
+    -fx-color-three: button-color-3;
+    -fx-color-four:  button-color-4;
+    -fx-background-color:
+        linear-gradient(-fx-color-four, -fx-color-one),
+        linear-gradient(-fx-color-four 0%, -fx-color-two 20%, -fx-color-one 100%),
+        linear-gradient(-fx-color-four 0%, -fx-color-three 50%);
+    -fx-background-radius: 10;
+    -fx-background-insets: 0.5;
+    -fx-text-fill: text-color;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
+} .toggle-button:hover {
+    -fx-color-one:   button-hover-1;
+    -fx-color-two:   button-hover-2;
+    -fx-color-three: button-hover-3;
+    -fx-color-four:  button-hover-4;
+} .toggle-button:selected {
+    -fx-color-one:   toggle-selected;
+    -fx-color-two:   toggle-selected;
+    -fx-color-three: toggle-selected;
+    -fx-color-four:  toggle-selected;
+}
+
+.list-view {
+    -fx-color-one:   list-bg-gradient-1;
+    -fx-color-two:   list-bg-gradient-2;
+    -fx-color-three: list-bg-gradient-3;
+    -fx-color-four:  list-bg-gradient-4;
+    -fx-background-color:
+        linear-gradient(-fx-color-four, -fx-color-one),
+        linear-gradient(-fx-color-four 0%, -fx-color-two 20%, -fx-color-one 100%),
+        linear-gradient(-fx-color-four 0%, -fx-color-three 50%);
+    -fx-text-fill: text-color;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
+}

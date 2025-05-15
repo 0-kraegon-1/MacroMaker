@@ -12,6 +12,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -22,11 +23,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.macromaker_apicontroller.MacroMaker_APIController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.macromaker_apicontroller.MacroMaker_API_MouseMacroController">
    <center>
       <VBox prefHeight="350.0" prefWidth="550.0" BorderPane.alignment="CENTER">
          <children>
-            <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+            <MenuBar fx:id="menuBar">
                <menus>
                   <Menu mnemonicParsing="false" text=" File ">
                      <items>
@@ -62,20 +63,12 @@
                            <content>
                               <Label focusTraversable="false" text=" Macro Settings " textAlignment="RIGHT" underline="true">
                                  <padding>
-                                    <Insets bottom="5.0" left="95.0" top="5.0" />
+                                    <Insets bottom="5.0" left="90.0" top="5.0" />
                                  </padding>
                               </Label>
                            </content>
                         </CustomMenuItem>
-                        <MenuItem mnemonicParsing="false" text="   Keystroke Delay (ms)">
-                           <graphic>
-                              <Slider fx:id="keystrokeSlider" blockIncrement="1.0" min="1.0" minorTickCount="0" onMouseReleased="#keystrokeSliderDragDropped" onScroll="#keystrokeSliderScroll" showTickLabels="true" showTickMarks="true" value="25.0">
-                                 <padding>
-                                    <Insets top="5.0" />
-                                 </padding></Slider>
-                           </graphic>
-                        </MenuItem>
-                        <MenuItem mnemonicParsing="false" text="   Initial Wait Time (sec)">
+                        <MenuItem mnemonicParsing="false" text="  Initial Wait Time (sec)">
                            <graphic>
                               <Slider fx:id="waitTimeSlider" blockIncrement="1.0" majorTickUnit="5.0" max="30.0" min="1.0" minorTickCount="0" onMouseReleased="#waitTimeSliderDragDropped" onScroll="#waitTimeSliderScroll" showTickLabels="true" showTickMarks="true" value="5.0">
                                  <padding>
@@ -83,7 +76,7 @@
                                  </padding></Slider>
                            </graphic>
                         </MenuItem>
-                        <MenuItem mnemonicParsing="false" text="   Macro Loop Count">
+                        <MenuItem mnemonicParsing="false" text="  Macro Loop Count">
                            <graphic>
                               <TextField fx:id="loopCountBox" alignment="CENTER" maxWidth="100.0" onKeyReleased="#loopCountAltered" text="1" translateX="20.0">
                                  <opaqueInsets>
@@ -92,12 +85,19 @@
                               </TextField>
                            </graphic>
                         </MenuItem>
-                        <CustomMenuItem hideOnClick="false" mnemonicParsing="false">
+                        <CustomMenuItem hideOnClick="false" mnemonicParsing="false" text="Loop Indefinitely">
                            <content>
-                              <CheckBox fx:id="loopIndefinitelyCheckBox" mnemonicParsing="false" onAction="#loopIndefinitelyCheckBoxClicked" text="                     Loop Indefinitely">
+                              <CheckBox fx:id="loopIndefinitelyCheckBox" mnemonicParsing="false" onAction="#loopIndefinitelyCheckBoxClicked">
                                  <padding>
                                     <Insets bottom="5.0" left="63.0" top="5.0" />
                                  </padding>
+                                 <graphic>
+                                    <Label text="Loop Indefinitely">
+                                       <padding>
+                                          <Insets left="105.0" />
+                                       </padding>
+                                    </Label>
+                                 </graphic>
                               </CheckBox>
                            </content>
                         </CustomMenuItem>
@@ -106,29 +106,49 @@
                            <content>
                               <Label focusTraversable="false" text=" Misc Settings " textAlignment="RIGHT" underline="true">
                                  <padding>
-                                    <Insets bottom="5.0" left="105.0" top="5.0" />
+                                    <Insets bottom="5.0" left="100.0" top="5.0" />
                                  </padding>
                               </Label>
                            </content>
                         </CustomMenuItem>
-                        <CustomMenuItem hideOnClick="false" mnemonicParsing="false">
+                        <CustomMenuItem hideOnClick="false" mnemonicParsing="false" text="Always Appears On-Top">
                            <content>
-                              <CheckBox fx:id="alwaysOnTopCheckBox" mnemonicParsing="false" onAction="#alwaysOnTopCheckBoxClicked" text="           App Always Appears On-Top  ">
+                              <CheckBox fx:id="alwaysOnTopCheckBox" mnemonicParsing="false" onAction="#alwaysOnTopCheckBoxClicked" text="       App Always Appears On-Top  ">
                                  <padding>
                                     <Insets bottom="5.0" left="63.0" top="5.0" />
                                  </padding>
                               </CheckBox>
                            </content>
                         </CustomMenuItem>
+                        <Menu id="menu-item" mnemonicParsing="false">
+                          <items>
+                            <MenuItem mnemonicParsing="false">
+                                 <graphic>
+                                    <Label text="Dark">
+                                       <padding>
+                                          <Insets bottom="1.0" top="1.0" />
+                                       </padding>
+                                    </Label>
+                                 </graphic>
+                              </MenuItem>
+                          </items>
+                           <graphic>
+                              <Label text="Set Theme">
+                                 <padding>
+                                    <Insets bottom="5.0" left="112.0" top="5.0" />
+                                 </padding>
+                              </Label>
+                           </graphic>
+                        </Menu>
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Switch App">
                      <items>
-                      <MenuItem mnemonicParsing="false" onAction="#switchToMouseMacroEditor">
+                      <MenuItem mnemonicParsing="false" onAction="#switchToKeyboardMacroEditor">
                            <graphic>
-                              <Label text="  Switch To Mouse Macro Editor">
+                              <Label text="Switch To Keyboard Macro Editor">
                                  <padding>
-                                    <Insets bottom="5.0" left="5.0" top="5.0" />
+                                    <Insets bottom="5.0" left="10.0" top="5.0" />
                                  </padding>
                               </Label>
                            </graphic></MenuItem>
@@ -136,7 +156,7 @@
                   </Menu>
                   <Menu mnemonicParsing="false" text="Help">
                      <items>
-                        <MenuItem mnemonicParsing="false" onAction="#displayKeyMacroSaveFileLocation">
+                        <MenuItem mnemonicParsing="false" onAction="#displayMouseMacroSaveFileLocation">
                            <graphic>
                               <Label text="Display Save File Location">
                                  <padding>
@@ -147,25 +167,76 @@
                      </items>
                   </Menu>
                </menus>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
                <padding>
                   <Insets left="-0.5" />
                </padding>
             </MenuBar>
-            <TextArea fx:id="macroTextBox" promptText="Write your macros here to execute them.  You can also save and load macros" VBox.vgrow="ALWAYS">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin></TextArea>
-            <ButtonBar fx:id="buttonBar" buttonMinWidth="50.0" minHeight="40.0" VBox.vgrow="NEVER">
+            <SplitPane fx:id="splitPane" dividerPositions="0.5" VBox.vgrow="ALWAYS">
+               <items>
+                  <AnchorPane minHeight="0.0" minWidth="0.0">
+                     <children>
+                        <TextArea fx:id="macroTextBox" editable="false" layoutX="2.0" prefHeight="181.0" prefWidth="408.0" promptText="Recorded macros will appear here in list format." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane maxWidth="175.0" minHeight="0.0" minWidth="0.0">
+                     <children>
+                        <VBox prefHeight="271.0" prefWidth="173.0">
+                           <children>
+                              <Label alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" text="Mouse &amp; Screen Data" textAlignment="CENTER" underline="true">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Screen Size:">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="2.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="screenSizeBox" editable="false" prefHeight="25.0" prefWidth="100.0">
+                                 <VBox.margin>
+                                    <Insets left="2.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <Label text="Mouse Position:">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="2.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="mousePositionBox" editable="false" prefHeight="25.0" prefWidth="116.0">
+                                 <VBox.margin>
+                                    <Insets left="2.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="175.0" text="MORE FEATURES" textAlignment="CENTER" translateY="40.0" underline="true">
+                                 <font>
+                                    <Font name="System Bold Italic" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="175.0" text="COMING SOON!" textAlignment="CENTER" translateY="40.0" underline="true">
+                                 <font>
+                                    <Font name="System Bold Italic" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </items>
+            </SplitPane>
+            <ButtonBar fx:id="buttonBar" buttonMinWidth="50.0" minHeight="40.0">
                <buttons>
                   <HBox fx:id="macroIndicatorField" alignment="CENTER" fillHeight="false" visible="false">
                      <children>
-                        <Label fx:id="macroIndicatorText" style="-fx-text-fill: #E30707;" text=" WAITING... " textOverrun="CLIP" underline="true">
+                        <Label fx:id="macroIndicatorText" style="-fx-text-fill: #E30707;" text=" RECORDING " textOverrun="CLIP" underline="true">
                            <font>
                               <Font name="System Bold Italic" size="14.0" />
                            </font>
@@ -175,20 +246,20 @@
                         <Insets right="10.0" />
                      </padding>
                   </HBox>
-                  <Button mnemonicParsing="false" onAction="#executePressed" text="Execute" textAlignment="CENTER" />
-                  <Button mnemonicParsing="false" onAction="#killMacroPressed" text="Kill Macro" textAlignment="CENTER" />
-                  <Button mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#clearTextPressed" text="Clear Text" textAlignment="CENTER">
+                  <Button fx:id="recordButton" mnemonicParsing="false" onAction="#recordPressed" text="Record" />
+                  <Button fx:id="executeButton" mnemonicParsing="false" onAction="#executePressed" text="Execute" />
+                  <Button fx:id="clearButton" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#clearTextPressed" text="Clear Text" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
                </buttons>
-               <padding>
-                  <Insets right="10.0" />
-               </padding>
                <VBox.margin>
                   <Insets />
                </VBox.margin>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
             </ButtonBar>
          </children>
       </VBox>
@@ -208,7 +279,7 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button fx:id="closeButton" maxHeight="30.0" maxWidth="50.0" minHeight="30.0" minWidth="50.0" mnemonicParsing="false" onAction="#closeButtonPressed" prefHeight="30.0" prefWidth="50.0" style="-fx-background-insets: null;" text="✕" textAlignment="CENTER">
+                  <Button fx:id="closeButton" mnemonicParsing="false" onAction="#closeButtonPressed" style="-fx-background-insets: null;" text="✕" textAlignment="CENTER">
                      <font>
                         <Font size="15.0" />
                      </font>
